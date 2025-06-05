@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <title>Løbere</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <h1>Registrerede løbere</h1>
+    <ul>
+        {% for runner in runners %}
+            <li>{{ runner[1] }} (startet: {{ runner[2] }})</li>
+        {% endfor %}
+    </ul>
+    </div>  
+
+    <hr>
+
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <h2>Navigation</h2>
+    <ul>
+        <li><a href="/add-runner" style="
+            margin-top: 5px;
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Registrer ny løber</a></li>
+        <li><a href="/add-event" style="
+            margin-top: 5px;
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Opret nyt løb</a></li>
+        <li><a href="/events" style="
+            margin-top: 5px;
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Se alle løb</a></li>
+    </ul>
+    </div>
+</body>
+</html>

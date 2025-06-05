@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head><title>Løb</title></head>
+<body>
+    <h1 style="text-align:center;">Alle løb og deltagere</h1>
+
+    <form method="get" style="text-align:center; margin-bottom: 20px;">
+        <label>Fra dato:</label>
+        <input type="date" name="from_date" value="{{ request.args.get('from_date', '') }}">
+    
+        <label>Til dato:</label>
+        <input type="date" name="to_date" value="{{ request.args.get('to_date', '') }}"><br><br>
+    
+        <label>Min distance (km):</label>
+        <input type="number" step="0.1" name="min_distance" value="{{ request.args.get('min_distance', '') }}">
+    
+        <label>Maks distance (km):</label>
+        <input type="number" step="0.1" name="max_distance" value="{{ request.args.get('max_distance', '') }}"><br><br>
+    
+        <label>Min varighed (fx 00:10:00 eller 001000):</label>
+        <input type="text" name="min_duration" placeholder="00:10:00" value="{{ request.args.get('min_duration', '') }}">
+    
+        <label>Maks varighed:</label>
+        <input type="text" name="max_duration" placeholder="01:00:00" value="{{ request.args.get('max_duration', '') }}"><br><br>
+    
+        <input type="submit" value="Filtrer">
+    
+        <a href="/events" style="margin-left: 10px;" >Nulstil filtre</a>
+    </form>
+    
+    
+    
+    
+
+    <table style="margin: 0 auto; border-collapse: collapse;" border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Dato</th>
+                <th>Løber</th>
+                <th>Distance (km)</th>
+                <th>Varighed</th>
+                <th>Temperatur</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event[0].strftime('%d-%m-%Y') }}</td>
+                <td>{{ event[1] }}</td>
+                <td>{{ event[2] }}</td>
+                <td>{{ event[3] }}</td>
+                <td>
+                    {% if event[4] is not none %}
+                        {{ event[4] }}°C
+                    {% else %}
+                        (ukendt)
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/add-event" style="
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Tilføj nyt løb</a>
+
+        <a href="/runners" style="
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Tilbage til løbere</a>
+
+        <a href="/add-runner" style="
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Registrer ny løber</a>
+    </div>
+
+    
+
+</body>
+</html>
+
+

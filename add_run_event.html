@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tilføj løb</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <h1>Opret nyt løb</h1>
+    <form action="/add-event" method="POST">
+        <label>Dato:</label>
+        <input type="date" name="date" required><br><br>
+    
+        <label>Vælg løber:</label>
+        <select name="runner" required>
+            {% for runner in runners %}
+                <option value="{{ runner[0] }}">{{ runner[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+    
+        <label>Distance (km):</label>
+        <input type="number" step="0.1" name="distance" required><br><br>
+    
+        <label>Varighed:</label>
+        <select name="hours">{% for h in range(0, 13) %}<option value="{{ h }}">{{ h }} t</option>{% endfor %}</select>
+        <select name="minutes">{% for m in range(0, 60) %}<option value="{{ m }}">{{ m }} min</option>{% endfor %}</select>
+        <select name="seconds">{% for s in range(0, 60) %}<option value="{{ s }}">{{ s }} sek</option>{% endfor %}</select>
+        <select name="milliseconds">{% for ms in range(0, 1000, 100) %}<option value="{{ ms }}">{{ ms }} ms</option>{% endfor %}</select><br><br>
+    
+        <label>Temperatur (°C):</label>
+        <input type="number" name="temperature" step="1" placeholder="valgfri"><br><br>
+    
+        <input type="submit" value="Opret løb og registrer deltagelse">
+    </form>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/events" style="
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Se alle løb</a>
+
+        <a href="/runners" style="
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Tilbage til løbere</a>
+
+        <a href="/add-runner" style="
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        ">Registrer ny løber</a>
+    </div>
+
+</body>
+</html>
+
